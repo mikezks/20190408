@@ -1,7 +1,25 @@
 
-<ng-container *ngIf="{
+<!-- <ng-container *ngIf="{
             timer: timer$ | async
           } as componentData">
   Timer: {{ componentData.timer }}
-  <!-- Timer 2: {{ timer$ | async }} -->
-</ng-container>
+  Timer 2: {{ timer$ | async }}
+</ng-container> -->
+
+<div class="card">
+  <div class="header">
+      <h1 class="title">Typeahead</h1>
+  </div>
+
+  <div class="content">
+
+  <div class="control-group">
+      <label>City</label>
+      <input
+          [formControl]="control" class="form-control">
+  </div>
+
+  <div *ngIf="loading">Loading...</div>
+
+  </div>
+</div>
