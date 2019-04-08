@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { FlightsLoadedAction, FlightUpdateAction, FlightBookingActionTypes, FlightsLoadAction } from '../+state/actions/flight-booking.actions';
 import { first } from 'rxjs/operators';
+import { getFlights } from '../+state/selectors/flight-booking.selectors';
 
 @Component({
   selector: 'flight-search',
@@ -36,7 +37,10 @@ export class FlightSearchComponent implements OnInit {
     this.flights$ =
       this.store
         .pipe(
-          select(state => state.flightBooking.flights)
+          select(
+            //state => state.flightBooking.flights
+            getFlights
+          )
         );
   }
 
