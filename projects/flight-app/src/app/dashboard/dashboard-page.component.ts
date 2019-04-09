@@ -35,12 +35,12 @@ export class DashboardPageComponent {
 
 		const tile = document.createElement(elementName);
 
-tile.setAttribute('class', 'col-lg-4 col-md-3 col-sm-2');
-tile.setAttribute('a', '' + data[0]);
-tile.setAttribute('b', '' + data[1]);
-tile.setAttribute('c', '' + data[2]);
+		tile.setAttribute('class', 'col-lg-4 col-md-3 col-sm-2');
+		tile.setAttribute('a', '' + data[0]);
+		tile.setAttribute('b', '' + data[1]);
+		tile.setAttribute('c', '' + data[2]);
 
-content.appendChild(tile);
+		content.appendChild(tile);
 
 	}
 

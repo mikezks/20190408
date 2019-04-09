@@ -53,7 +53,7 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
     BasketComponent
   ],
   schemas: [
-    // Todo: Add this schema: CUSTOM_ELEMENTS_SCHEMA
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomSerializer }
