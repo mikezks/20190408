@@ -1,6 +1,6 @@
 import { DashboardModule } from './dashboard/dashboard.module';
 import { FlightCancellingModule } from './flight-booking/flight-cancelling/flight-cancelling.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
@@ -24,7 +24,8 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './+state/effects/app.effects';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
-
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { AuthInterceptorService } from './shared/auth/auth-interceptor.service';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([ AppEffects ]),
     StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    OAuthModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -56,7 +58,8 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
     CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [
-    { provide: RouterStateSerializer, useClass: CustomSerializer }
+    { provide: RouterStateSerializer, useClass: CustomSerializer },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })
